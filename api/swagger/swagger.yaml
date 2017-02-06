@@ -1,0 +1,175 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Books Inventory
+host: localhost:10010
+basePath: /
+schemes:
+  - http
+  - https
+consumes:
+  - application/x-www-form-urlencoded
+produces:
+  - text/html
+paths:
+  /:
+    x-swagger-router-controller: books
+
+    # TODO: Implement
+    get:
+      summary: cover page of book inventory
+      description: here all options are display to client.
+      operationId: home
+      responses:
+        200:
+          description: Successfully returns home page.
+
+  /list:
+    x-swagger-router-controller: books
+
+    # TODO: Implement
+    get:
+      summary: Lists all books
+      description: List all the books available in the database.
+      operationId: list
+      responses:
+        200:
+          description: Successfully returns all the available books.
+
+    # TODO: Implement
+    post:
+      summary: Create a new book
+      description: Add a new book to the database.
+      operationId: create
+      parameters:
+      - name: bookname
+        in: body
+        description: create a new book
+        schema:
+          properties:
+            bookname:
+              type: string
+            author:
+              type: string
+            isbn:
+              type: integer
+            price:
+              type: integer
+            year:
+              type: integer
+            qty:
+              type: integer
+            publisher:
+              type: string
+      responses:
+        302:
+          description: Redirects to /list on successful creation of the book.
+
+  /create:
+    x-swagger-router-controller: books
+    get:
+      summary: Render "Create Book" form
+      description: Displays a form which can be used to create a new book.
+      operationId: renderCreate
+      responses:
+        200:
+          description: Displays create book form.
+
+  /list/{bookId}:
+    parameters:
+      - name: bookId
+        in: path
+        type: number
+        description: ID of the book
+        required: true
+
+    x-swagger-router-controller: books
+    get:
+      summary: Display a book by id
+      description: Display the edit form of a book by its id.
+      operationId: get
+      responses:
+        200:
+          description: Displays edit book form.
+
+    post:
+      summary: Edit a book by id
+      description: Updates information of a book by id.
+      operationId: update
+      parameters:
+      - name: bookname
+        in: body
+        description: create a new book
+        schema:
+          properties:
+            bookname:
+              type: string
+            author:
+              type: string
+            isbn:
+              type: integer
+            price:
+              type: integer
+            year:
+              type: integer
+            qty:
+              type: integer
+            publisher:
+              type: string
+      responses:
+        302:
+          description: Successfully returns all the available books.
+
+  /delete/{bookId}:
+    parameters:
+      - name: bookId
+        in: path
+        type: number
+        description: ID of the book
+        required: true
+
+    x-swagger-router-controller: books
+    get:
+      summary: Display a book by id
+      description: Display the edit form of a book by its id.
+      operationId: remove
+      responses:
+        200:
+          description: Displays edit book form.
+
+  /buy/{bookId}:
+
+      parameters:
+       - name: bookId
+         in: path
+         type: number
+         description: ID of the book
+         required: true
+      x-swagger-router-controller: books
+      get:
+        summary: Display a book by id
+        description: Display the edit form of a book by its id.
+        operationId: buy
+        responses:
+          200:
+            description: Displays edit book form.
+  /sell/{bookId}:
+
+      parameters:
+       - name: bookId
+         in: path
+         type: number
+         description: ID of the book
+         required: true
+      x-swagger-router-controller: books
+      get:
+        summary: Display a book by id
+        description: Display the edit form of a book by its id.
+        operationId: sell
+        responses:
+          200:
+            description: Displays edit book form.
+  /swagger:
+      x-swagger-pipe: swagger_raw
+  /favicon.ico:
+      x-swagger-pipe: swagger_raw

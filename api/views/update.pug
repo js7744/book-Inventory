@@ -1,0 +1,101 @@
+doctype html
+html(lang="en")
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Insert Books
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css', integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp', crossorigin='anonymous')
+    link(rel='icon', href='images/agenda.svg', sizes='16X16', type='image/svg+xml')
+
+  body
+    div
+      nav.navbar.navbar-inverse
+        .container-fluid
+          .navbar-header
+            a.navbar-brand(href='/') Book Inventory
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav.bg-inverse
+              li
+                a(href="/")
+                  | Home
+              li.active
+                a(href="/create")
+                  | Create
+                  span.sr-only (current)
+              li
+                a(href="/list")
+                  | List
+              form.navbar-form.navbar-right
+                .form-group
+                  input.form-control(type='text', placeholder='Search')
+                button.btn.btn-default(type='submit') Search
+    .container
+      .jumbotron
+          h1 Book Inventory
+            p
+              | Update data here
+            p
+              a.btn.btn-primary.btn-lg(href='/create', role='button') Insert NEW
+      .page-header
+        h1
+          | Insert Valid Data
+        small insert your data
+        br
+        br
+
+        - const action = '/list/' + (book ? book.id : '')
+        - const method = book ? "POST" : "POST"
+        form.form-horizontal(action=action, method=method)
+          .form-group.form-group-lg
+            label.col-sm-2.control-label(for='formGroupInputLarge') Book Name :
+            .col-sm-10
+              input#formGroupInputLarge.form-control(type='text',name="bookname", value=book ? book.bookname : "", placeholder='Book Name')
+            .table-responsive
+            br
+            br
+          .form-group.form-group-lg
+            label.col-sm-2.control-label(for='formGroupInputLarge') Author Name :
+            .col-sm-10
+              input#formGroupInputLarge.form-control(type='text',name="authorname", value=book ? book.authorname : "", placeholder='Author Name')
+            .table-responsive
+            br
+            br
+          .form-group.form-group-lg
+            label.col-sm-2.control-label(for='formGroupInputLarge') ISBN No :
+            .col-sm-10
+              input#formGroupInputLarge.form-control(type='text',name="isbn", value=book ? book.isbn : "", placeholder='ISBN No.')
+            .table-responsive
+            br
+            br
+          .form-group.form-group-lg
+            label.col-sm-2.control-label(for='formGroupInputLarge') Year :
+            .col-sm-10
+              input#formGroupInputLarge.form-control(type='text',name="year", value=book ? book.year : "", placeholder='Year')
+            .table-responsive
+            br
+            br
+          .form-group.form-group-lg
+            label.col-sm-2.control-label(for='formGroupInputLarge') Price :
+            .col-sm-10
+              input#formGroupInputLarge.form-control(type='text',name="price", value=book ? book.price : "", placeholder='Price')
+            .table-responsive
+            br
+            br
+          .form-group.form-group-lg
+            label.col-sm-2.control-label(for='formGroupInputLarge') Quantity :
+            .col-sm-10
+              input#formGroupInputLarge.form-control(type='text',name="quantity", value=book ? book.quantity : "", placeholder='Quantity')
+            .table-responsive
+            br
+            br
+          .form-group.form-group-lg
+            label.col-sm-2.control-label(for='formGroupInputLarge') Publisher :
+            .col-sm-10
+              input#formGroupInputLarge.form-control(type='text',name="publisher", value=book ? book.publisher : "", placeholder='Publisher')
+            .table-responsive
+            br
+            br
+          input.btn.btn-success(type='submit', value='update')
+
+
+

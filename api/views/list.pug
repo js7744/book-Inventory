@@ -1,0 +1,90 @@
+doctype html
+html(lang="en")
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Book Inventory
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css', integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp', crossorigin='anonymous')
+    link(rel='icon', href='images/agenda.svg', sizes='16X16', type='image/svg+xml')
+
+  body
+    div
+      nav.navbar.navbar-inverse
+        .container-fluid
+          .navbar-header
+            a.navbar-brand(href='/') Book Inventory
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav.bg-inverse
+              li
+                a(href="/")
+                  | Home
+              li
+                a(href="/create")
+                  | Create
+              li.active
+                a(href="/list")
+                  | List
+                  span.sr-only (current)
+              form.navbar-form.navbar-right
+                .form-group
+                  input.form-control(type='text', placeholder='Search')
+                button.btn.btn-default(type='submit') Search
+
+
+    .container
+      .jumbotron
+          h1 Book Inventory
+            p
+              | Hey !! Hii looking for some information
+            p
+              a.btn.btn-primary.btn-lg(href='/create', role='button') Add More
+      .page-header
+        h1
+          | Book List
+        small this are some data of books
+
+      .panel.panel-primary
+        .panel-heading Books Record
+        .table-responsive
+          table.table.table-hover
+            thead
+              tr
+                th id
+                th Name
+                th Author
+                th ISBN
+                th Year
+                th Price
+                th Quantity
+                th Publisher
+                th Update
+                th Delete
+                th buy
+                th sell
+            tbody
+            each books in book
+              tr
+                td= books.id
+                td= books.bookname
+                td= books.authorname
+                td= books.isbn
+                td= books.year
+                td= books.price
+                td= books.quantity
+                td= books.publisher
+
+                td
+                  div
+                    a.span.glyphicon.glyphicon-pencil(href="/list/"+books.id )
+                td
+                  div
+                    a.span.glyphicon.glyphicon-remove(href="/delete/"+books.id )
+                td
+                  div
+                    a.span.glyphicon.glyphicon-arrow-up(href="/buy/"+books.id)
+                td
+                  div
+                    a.span.glyphicon.glyphicon-arrow-down(href="/sell/"+books.id)
+
+          script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+          script(src='js/bootstrap.min.js')
